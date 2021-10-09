@@ -802,6 +802,20 @@ type Member struct {
 	Permissions int64 `json:"permissions,string"`
 }
 
+type ThreadMember struct {
+	// The thread id of the thread member
+	Id string `json:"id"`
+
+	// The user id of the thread member
+	UserId string `json:"user_id"`
+
+	// The timestamp of when this thread member joined
+	JoinTimestamp Timestamp `json:"join_timestamp"`
+
+	// Thread member flags
+	Flags int `json:"flags"`
+}
+
 // Mention creates a member mention
 func (m *Member) Mention() string {
 	return "<@!" + m.User.ID + ">"

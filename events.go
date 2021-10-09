@@ -289,6 +289,43 @@ type InteractionCreate struct {
 	*Interaction
 }
 
+// ThreadCreate is the data for a ThreadCreate event
+type ThreadCreate struct {
+	*Channel
+}
+
+// ThreadUpdate is the data for a ThreadUpdate event
+type ThreadUpdate struct {
+	*Channel
+}
+
+// ThreadDelete is the data for a ThreadDelete event
+type ThreadDelete struct {
+	*Channel
+}
+
+// ThreadListSync is the data for a ThreadListSync event
+type ThreadListSync struct {
+	GuildId    string     `json:"guild_id"`
+	ChannelIds string     `json:"channel_ids"`
+	Threads    []*Channel `json:"threads"`
+	Members    []*Member  `json:"members"`
+}
+
+// ThreadMemberUpdate is the data for a ThreadMemberUpdate event
+type ThreadMemberUpdate struct {
+	*ThreadMember
+}
+
+// ThreadMembersUpdate is the data for a ThreadMembersUpdate event
+type ThreadMembersUpdate struct {
+	Id               string          `json:"id"`
+	GuildId          string          `json:"guild_id"`
+	MemberCount      int             `json:"member_count"`
+	AddedMembers     []*ThreadMember `json:"added_members"`
+	RemovedMemberIds []string        `json:"removed_member_ids"`
+}
+
 // UnmarshalJSON is a helper function to unmarshal Interaction object.
 func (i *InteractionCreate) UnmarshalJSON(b []byte) error {
 	return json.Unmarshal(b, &i.Interaction)
